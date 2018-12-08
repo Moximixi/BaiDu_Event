@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #email-input{
+            width:200px;
+        }
+        #email-sug-wrapper{
+            width: 202px;
+            height:200px;
+            border: 1px solid black;
+            margin: 0;
+            padding:0;
+            display: none;
+        }
+        #email-sug-wrapper p{
+            margin: 0;+
+            padding: 0;
+            height: 40px;
+            line-height: 40px;
+           font-size: 12px;
+        }
+        .select{
+            background-color:#f0f ;
+        }
+        .chosen_select{
+            background-color:#ABCDEF ;
+        }
+        .white{
+            background-color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+    <script>
+        var postfixList=['163.com','gmail.com','126.com','qq.com','263.net'];
+        var inText=document.querySelector("#email-input");
+        var showText=document.querySelector("#email-sug-wrapper");
+//        inText.onkeydown=function(){
+//            console.log("我按下了");
+//        };
+//        inText.onkeyup=function(){
+//            console.log("我弹起来了");
+//        };
+        var input;
+        /*
+        * 获取输入的数据
+        * */
+        function getInput(){
+            input=inText.value.trim();
+            //console.log("输入的是"+input);
+            return input;
+        }
+        /*
+        * 向下拉框里面添加值
+        * */
+        function addDate(){
+            //清空下拉框
+            var input=getInput();//获得输入内容
+           for(var i=showText.childNodes.length-1;i>=0;i--){
+               showText.removeChild(showText.childNodes[i]);
+           }
+            for( var i in postfixList){
+                var p;
+                p = document.createElement("p");
+                if(input.indexOf("@")===-1) {//输入的数据中没有@
+                    p.innerText = input + "@" + postfixList[i];
+                    showText.appendChild(p);
+                }else{//有@
+                    var arr=[];
+                    arr=input.split("@");//输入的数据以@分为两部分
+                    if(postfixList[i].indexOf(arr[1])!=-1){//对@后面那一部分进行判断
+                        p.innerText=arr[0]+"@"+postfixList[i];
+                        showText.appendChild(p);
+                    }
+                }
+            }
+        }
+        /*
+        * 控制下拉框的显示情况
+        * */
+        function showOrNot(){
+            var input=getInput();
+            if(input.length===0||showText.childNodes.length===0){
+               showText.style.display="none";
+            }else{
+                showText.style.display="block";
+            }
+        }
+        /*
+        *添加样式
+        * */
+        function addStyle(){
+            showText.childNodes[0].className="select";
+            for(var i=showText.childNodes.length-1;i>=0;i--){
+                var choseONE= showText.childNodes[i];
+                choseONE.onclick=function(){
+                  inText.value=this.innerText;
+                  showText.style.display="none";
+                };
+                choseONE.onmouseover=function(){
+                    this.className="chosen_select";
+                };
+                choseONE.onmouseout=function(){
+                    this.className="white";
+                }
+            }
+        }
+        /*
+        * 控制方向
+        * */
+        function controDriection(){
+            var chose_one;//被选择的那个
+            chose_one=document.querySelector(".select");
+         window.onkeyup=function(event){
+             switch(event.key){
+                 case "ArrowDown":
+                     //清空
+                     for(var i=0;i<showText.childNodes.length;i++){
+                         showText.childNodes[i].className="white";
+                     }
+                     if(chose_one.nextSibling){
+                         chose_one.nextSibling.className="select";
+                         chose_one=chose_one.nextSibling;
+                     }else{
+                         showText.childNodes[0].className="select";
+                         chose_one=showText.childNodes[0];
+                     }
+                     break;
+                 case "ArrowUp":
+                     //清空
+                     for(var i=0;i<showText.childNodes.length;i++){
+                         showText.childNodes[i].className="white";
+                     }
+                     if(chose_one.previousSibling){
+                         chose_one.previousSibling.className="select";
+                         chose_one=chose_one.previousSibling;
+                     }else{
+                         showText.childNodes[showText.childNodes.length-1].className="select";
+                         chose_one=showText.childNodes[showText.childNodes.length-1];
+                     }
+                     break;
+                 case "Enter":
+                     inText.value=chose_one.innerText;
+                     showText.style.display="none";
+                     break;
+             }
+         }
+        }
+
+        inText.oninput=function(){
+            addDate();
+            showOrNot();
+            addStyle();
+            controDriection();
+        };
+    </script>
+</body>
+</html>

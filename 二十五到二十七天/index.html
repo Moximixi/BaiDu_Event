@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="time">倒计时开始</p>
+<p id="time_eng">倒计时开始</p>
+<button id="stop">暂停</button>
+<script>
+    var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+    var weekday_eng=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var root;
+    var year,month,day,week,hour,min,seconds,time,time_eng,time_zone;
+    function setDouble(time){
+        if(time<10)
+            time="0"+time;
+        return time;
+    }
+    function getMessage()
+    {
+        root=new Date();
+        year = root.getFullYear();
+        month = root.getMonth();
+        month += 1;
+        day = root.getDate();
+        day=setDouble(day);
+        week = root.getDay();
+        hour = root.getHours();
+        hour=setDouble(hour);
+        min = root.getMinutes();
+        min=setDouble(min);
+        seconds = root.getSeconds();
+        seconds=setDouble(seconds);
+        time = null;
+        time_zone=parseInt(hour)>12?"pm":"am";
+    }
+
+function getTitle(){
+    getMessage();
+    time=year+"年"+month+"月"+day+"日"+weekday[week]+hour+":"+min+":"+seconds;
+    hour=parseInt(hour)>12?hour-12:hour;
+    hour=setDouble(hour);
+    time_eng=year+"_"+month+"_"+day+" "+weekday_eng[week]+" "+hour+":"+min+":"+seconds+" "+time_zone;
+    document.querySelector("#time").innerHTML=time;
+    document.querySelector("#time_eng").innerHTML=time_eng;
+}
+
+var clock=setInterval(getTitle,1000);
+document.querySelector("#stop").onclick=function(){
+    clearInterval(clock);
+}
+</script>
+</body>
+</html>
