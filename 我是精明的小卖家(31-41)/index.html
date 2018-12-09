@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我是精明的小卖家</title>
+</head>
+<body>
+<select name="" id="region-select">
+    <option value="">请选择</option>
+    <option value="华东">华东</option>
+    <option value="华南">华南</option>
+    <option value="华北">华北</option>
+</select>
+<form action="">
+    <input type="radio" name="product" value="手机">手机
+    <input type="radio" name="product" value="笔记本">笔记本
+    <input type="radio" name="product" value="智能音箱">智能音箱
+</form>
+<table id="tableShow" border="1">
+</table>
+<script>
+    var regionSelect=document.querySelector("#region-select");
+    var productSelect=document.querySelector("#product-select");
+    var tableShow=document.querySelector("#tableShow");
+    var radio=document.getElementsByName("product");//获得所有产品类
+    var sourceData = [{
+        product: "手机",
+        region: "华东",
+        sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+    }, {
+        product: "手机",
+        region: "华北",
+        sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+    }, {
+        product: "手机",
+        region: "华南",
+        sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+    }, {
+        product: "笔记本",
+        region: "华东",
+        sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+    }, {
+        product: "笔记本",
+        region: "华北",
+        sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+    }, {
+        product: "笔记本",
+        region: "华南",
+        sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+    }, {
+        product: "智能音箱",
+        region: "华东",
+        sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+    }, {
+        product: "智能音箱",
+        region: "华北",
+        sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+    }, {
+        product: "智能音箱",
+        region: "华南",
+        sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+    }];
+    var list=[];//找到的数据
+    //触发器
+    regionSelect.onchange=function(){
+        createTable();
+    };
+    for(var i in radio){
+        radio[i].onclick=function(){
+            console.log(this.value);
+            createTable();
+        }
+    }
+    /*
+    * 返回地区选择中选择的数据
+    * */
+    function regionValue(){
+        return regionSelect.value;
+    }
+    /*
+    * 返回产品选择中的数据
+    * */
+    function productValue(){
+        for(var i in radio){
+            if(radio[i].checked){
+                return radio[i].value;
+            }
+        }
+        return "";//如果谁都没选，就返回空
+    }
+    /*
+    * 在数据库中查找数据
+    * */
+    function findData(){
+        var addList=[];
+        var selectData=regionValue();
+        var radioData=productValue();
+        list=[];
+        for(var i=0;i<sourceData.length;i++){
+            if(sourceData[i].region.indexOf(selectData)!==-1&&sourceData[i].product.indexOf(radioData)!==-1){
+                list.push(sourceData[i]);
+            }
+        }
+        for(var j=0;j<list.length;j++){
+            var addList_row=[];
+            addList_row.push(list[j]["product"]);
+            addList_row.push(list[j]["region"]);
+            for(var i in list[j]["sale"]){
+                addList_row.push(list[j]["sale"][i]);
+            }
+            addList[j]=addList_row;
+        }
+        console.log(list);
+        console.log(addList);
+        return addList;
+    }
+    /*
+    * 渲染表格
+    * */
+    function createTable(){
+        //清空内容
+        for(var i=tableShow.childNodes.length-1;i>=0;i--){
+            tableShow.removeChild(tableShow.childNodes[i]);
+        }
+        //形成表头
+        var addList=["商品","地区","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+        var tr=document.createElement("tr");
+        for(var i in addList){
+            var td=document.createElement("th");
+            td.innerText=addList[i];
+            tr.appendChild(td);
+        }
+        tableShow.appendChild(tr);
+        //形成内容
+        addList=findData();//接受查询到的数据
+        for(var j in addList){
+            var tr2=document.createElement("tr");
+            for(var i in addList[j]){
+                var td2=document.createElement("td");
+                td2.innerText=addList[j][i];
+                tr2.appendChild(td2);
+            }
+            tableShow.appendChild(tr2);
+        }
+    }
+
+</script>
+</body>
+</html>

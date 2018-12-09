@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cad726a-d7df-4caf-95f8-e17190d548f2" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/邮箱输入提示后缀（28-30）/index.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/邮箱输入提示后缀/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/邮箱输入提示后缀/index.html" afterPath="" />
-    </list>
+    <list default="true" id="9cad726a-d7df-4caf-95f8-e17190d548f2" name="默认的" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,22 +15,25 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/邮箱输入提示后缀（28-30）/index.html">
+        <entry file="file://$PROJECT_DIR$/我是精明的小卖家(31-41)/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+            <state relative-caret-position="494">
+              <caret line="88" column="31" lean-forward="false" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/邮箱输入提示后缀（28-30）/README.md">
+        <entry file="file://$PROJECT_DIR$/我是精明的小卖家(31-41)/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-                <folding />
+              <first_editor relative-caret-position="576">
+                <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+                <folding>
+                  <marker date="1544342484180" expanded="true" signature="145:207" ph="{...}" />
+                  <marker date="1544342484180" expanded="true" signature="306:369" ph="{...}" />
+                </folding>
               </first_editor>
               <second_editor />
             </state>
@@ -43,6 +41,22 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>addData</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>addList</replace>
+      <replace>regionValue</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -56,6 +70,8 @@
       <list>
         <option value="$PROJECT_DIR$/邮箱输入提示后缀/index.html" />
         <option value="$PROJECT_DIR$/邮箱输入提示后缀（28-30）/README.md" />
+        <option value="$PROJECT_DIR$/我是精明的小卖家(31-41)/README.md" />
+        <option value="$PROJECT_DIR$/我是精明的小卖家(31-41)/index.html" />
       </list>
     </option>
   </component>
@@ -73,8 +89,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="516" />
-    <option name="y" value="35" />
+    <option name="x" value="597" />
+    <option name="y" value="11" />
     <option name="width" value="974" />
     <option name="height" value="1072" />
   </component>
@@ -103,7 +119,7 @@
             <path>
               <item name="BaiDu_Event" type="b2602c69:ProjectViewProjectNode" />
               <item name="BaiDu_Event" type="462c0819:PsiDirectoryNode" />
-              <item name="邮箱输入提示后缀（28-30）" type="462c0819:PsiDirectoryNode" />
+              <item name="我是精明的小卖家(31-41)" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -118,6 +134,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -146,18 +163,18 @@
       <updated>1544318694665</updated>
       <workItem from="1544318700674" duration="2189000" />
       <workItem from="1544321741172" duration="283000" />
-      <workItem from="1544322043081" duration="65000" />
+      <workItem from="1544322043081" duration="12639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2537000" />
+    <option name="totallyTimeSpent" value="15111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12289029" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24894515" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -249,6 +266,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
           <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/我是精明的小卖家(31-41)/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="576">
+            <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <folding>
+              <marker date="1544342484180" expanded="true" signature="145:207" ph="{...}" />
+              <marker date="1544342484180" expanded="true" signature="306:369" ph="{...}" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/我是精明的小卖家(31-41)/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="88" column="31" lean-forward="false" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
           <folding />
         </state>
       </provider>
