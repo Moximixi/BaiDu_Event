@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>下拉菜单</title>
     <style>
         #email-input{
             width:200px;
@@ -35,7 +35,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <input id="email-input" type="text">
+        <input id="email-input" type="text" autofocus="autofocus">
         <ul id="email-sug-wrapper" class="email-sug"></ul>
     </div>
     <script>
@@ -102,6 +102,7 @@
                 var choseONE= showText.childNodes[i];
                 choseONE.onclick=function(){
                   inText.value=this.innerText;
+                  inText.focus();
                   showText.style.display="none";
                 };
                 choseONE.onmouseover=function(){
@@ -148,7 +149,12 @@
                      break;
                  case "Enter":
                      inText.value=chose_one.innerText;
+                     inText.focus();
                      showText.style.display="none";
+                     break;
+                 case "Escape":
+                     inText.select();//输入框内的全选
+                    //console.log("我按了Esc");
                      break;
              }
          }
