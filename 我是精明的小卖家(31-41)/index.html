@@ -3,26 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>我是精明的小卖家</title>
+    <style>
+        td,th{
+            width: 70px;
+            height:70px;
+        }
+        td{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<select name="" id="region-select">
-    <option value="">请选择</option>
-    <option value="华东">华东</option>
-    <option value="华南">华南</option>
-    <option value="华北">华北</option>
-</select>
-<form action="">
-    <input type="radio" name="product" value="手机">手机
-    <input type="radio" name="product" value="笔记本">笔记本
-    <input type="radio" name="product" value="智能音箱">智能音箱
+<from id="area1">
+    <input type="checkbox" value="华东" class="one">华东
+    <input type="checkbox" value="华南" class="one">华南
+    <input type="checkbox" value="华北" class="one" >华北
+    <input type="checkbox" value="全选" id="choseAll1">全选
+</from>
+<form id="area2">
+    <input type="checkbox" value="手机" class="two">手机
+    <input type="checkbox" value="笔记本" class="two">笔记本
+    <input type="checkbox" value="智能音箱" class="two">智能音箱
+    <input type="checkbox" value="全选" id="choseAll2">全选
 </form>
 <table id="tableShow" border="1">
 </table>
 <script>
-    var regionSelect=document.querySelector("#region-select");
-    var productSelect=document.querySelector("#product-select");
     var tableShow=document.querySelector("#tableShow");
-    var radio=document.getElementsByName("product");//获得所有产品类
+    var choseAll1=document.querySelector("#choseAll1");
+    var choseAll2=document.querySelector("#choseAll2");
+    var ones=document.getElementsByClassName("one");
+    var twos=document.getElementsByClassName("two");
+    var areaList=[];
+    var productList=[];
+    /*
+    *获取当前已经被点击的数目
+    */
+    function getCheckedNums(target){
+        var j=0;
+        for(var i in target){
+            if(target[i].checked===true){
+                j++;
+                //console.log("当前多少个被点击了:"+j);
+            }
+        }
+        return j;
+    }
+    /*
+    * 获得当前多选框选中的数据
+    * */
+    function pushList(target){
+        var list=[];
+        for(var i in target){
+            if(target[i].checked===true){
+                list.push(target[i].value);
+            }
+        }
+        return list;
+    }
+    /*
+    * 赋予点击事件
+    * */
+    function onclickEvent(target,choseAll){
+        var ckNums=0;
+        var list=[];
+        choseAll.setAttribute("nums",ckNums);
+        for(var i in target){
+            target[i].onclick=function(){
+                ckNums=getCheckedNums(target);//把当前选择的数量存到多选框的nums属性中
+                 choseAll.setAttribute("nums",ckNums);
+                if(ckNums===0){//阻止一个都没有选中的情况发生
+                  this.checked=true;
+                }else if(ckNums===target.length){
+                    choseAll.checked=true;
+                }else{
+                    choseAll.checked=false;
+                }
+                list=pushList(target);//获得当前选择的数据
+                if(target===ones){
+                    areaList=list;
+                }else if(target===twos){
+                    productList=list;
+                }
+                createTable();
+            }
+        }
+    }
+    onclickEvent(ones,choseAll1);
+    onclickEvent(twos,choseAll2);
+
+
     var sourceData = [{
         product: "手机",
         region: "华东",
@@ -60,58 +130,75 @@
         region: "华南",
         sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
     }];
-    var list=[];//找到的数据
-    //触发器
-    regionSelect.onchange=function(){
-        createTable();
-    };
-    for(var i in radio){
-        radio[i].onclick=function(){
-            console.log(this.value);
-            createTable();
+    /*
+    * 全选的封装
+    * */
+    function selectAll(btn){
+        var inputs2=btn.parentNode.getElementsByTagName("input");//获得自己的父节点的所有子input元素
+        for(var i in inputs2){
+            inputs2[i].checked=btn.checked;
         }
     }
+    choseAll1.onclick=function(){
+        selectAll(this);
+    };
+    choseAll2.onclick=function () {
+        selectAll(this);
+    };
+
+
+
+
+
+    var list=[];//从数据库中找到的数据
     /*
-    * 返回地区选择中选择的数据
+    * 在数据库中查找是否存在
     * */
-    function regionValue(){
-        return regionSelect.value;
-    }
-    /*
-    * 返回产品选择中的数据
-    * */
-    function productValue(){
-        for(var i in radio){
-            if(radio[i].checked){
-                return radio[i].value;
+    function findExist(target1,target2){
+        var list=[];
+        for(var i in sourceData){
+            if(sourceData[i].region.indexOf(target1)!==-1&&sourceData[i].product.indexOf(target2)!==-1){
+                list.push(sourceData[i]);
             }
         }
-        return "";//如果谁都没选，就返回空
+        return list;
     }
     /*
     * 在数据库中查找数据
     * */
+    //思路：双层循环，找数据，然后push进去
     function findData(){
         var addList=[];
-        var selectData=regionValue();
-        var radioData=productValue();
         list=[];
-        for(var i=0;i<sourceData.length;i++){
-            if(sourceData[i].region.indexOf(selectData)!==-1&&sourceData[i].product.indexOf(radioData)!==-1){
-                list.push(sourceData[i]);
+        console.log("选择选的数据上"+areaList);
+        console.log("选择选的数据下"+productList);
+        for(var i=0;i<areaList.length;i++){
+            for(var j=0;j<productList.length;j++){
+                list.push(findExist(areaList[i],productList[j]));
             }
         }
+        console.log("从数据中找到的数据为:");
+        console.log(list);
+        /*进行数据转化*/
+        addList=transformData(list);
+        console.log("转化后的函数为:");
+        console.log(addList);
+        return addList;
+    }
+    /*
+    * 数据转化函数
+    * */
+    function transformData(list){
+        var addList=[];
         for(var j=0;j<list.length;j++){
             var addList_row=[];
-            addList_row.push(list[j]["product"]);
-            addList_row.push(list[j]["region"]);
-            for(var i in list[j]["sale"]){
-                addList_row.push(list[j]["sale"][i]);
+            addList_row.push(list[j][0]["product"]);//这里面加了个[0]
+            addList_row.push(list[j][0]["region"]);
+            for(var i in list[j][0]["sale"]){
+                addList_row.push(list[j][0]["sale"][i]);
             }
             addList[j]=addList_row;
         }
-        console.log(list);
-        console.log(addList);
         return addList;
     }
     /*
